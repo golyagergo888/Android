@@ -1,57 +1,28 @@
 package main
 
-fun main(args: Array<String>) {
-    print("Exercices:");
-    println();
-    val number = 1;
-    var number2 = 2;
-    println("number: " + number);
-    println("number2: " + number2);
-    //	asd = 3; <- immutable
-    number2 = 4;
-    println("number: " + number);
-    println("number2: " + number2);
-    number2 = 3 + 4;
-    println("number2: " + number2);
-    var arr = listOf("one", "two");
-    println(arr);
-
-    //	functions
-    println()
-    println("First Exercise sum of two numbers:");
-    exercise1();
-    println();
-    println("Second Exercise days of week in list:");
-    exercise2();
-    println("\n");
-    println("Third Exercise isPrime:");
-    println(isPrime(2));
-    println();
-    println("Fourth Exercise isEven:");
-    println(isEven(2));
-}
+import java.util.Base64
 
 fun exercise1(){
-    val a = 2;
-    val b = 3;
-    val sum = a + b;
-    println("Sum: ${sum}");
+    val a = 2
+    val b = 3
+    val sum = a + b
+    println("Sum: ${sum}")
 }
 
 fun exercise2(){
-    val days = listOf("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday");
+    val days = listOf("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday")
     for (day in days) {
-        print(day + ", ");
+        print(day + ", ")
     }
     println();
     print("Days with T in the start: ")
-    days.filter{it.startsWith("T")}.forEach{print(it)};
-    println();
+    days.filter{it.startsWith("T")}.forEach{print(it)}
+    println()
     print("Days wich contains the letter e: ")
-    days.filter{it.contains("e")}.forEach{print(it)};
-    println();
+    days.filter{it.contains("e")}.forEach{print(it)}
+    println()
     print("Days wich has 6 lenght: ")
-    days.filter{it.length == 6 }.forEach{print(it + ", ") };
+    days.filter{it.length == 6 }.forEach{print(it + ", ") }
 }
 
 fun isPrime(a:Int) :Boolean{
@@ -79,3 +50,54 @@ fun isPrime(a:Int) :Boolean{
 fun isEven(number:Int):Boolean{
     return number % 2 == 0
 }
+
+fun isEven2(number:Int) = number % 2 == 0
+
+fun encode(text: String): String{
+    return Base64.getEncoder().encodeToString(text.toByteArray())
+}
+
+fun decode(text: String): String{
+    return String(Base64.getDecoder().decode(text))
+}
+
+fun main(args: Array<String>) {
+    print("Exercices:")
+    println();
+    val number = 1
+    var number2 = 2
+    println("number: " + number)
+    println("number2: " + number2)
+    //	asd = 3; <- immutable
+    number2 = 4
+    println("number: " + number)
+    println("number2: " + number2)
+    number2 = 3 + 4
+    println("number2: " + number2)
+    var arr = listOf("one", "two")
+    println(arr)
+
+    //	functions
+    println()
+    println("First Exercise sum of two numbers:")
+    exercise1()
+    println()
+    println("Second Exercise days of week in list:")
+    exercise2()
+    println("\n")
+    println("Third Exercise isPrime:")
+    println(isPrime(2))
+    println()
+    println("Fourth Exercise isEven:");
+    println(isEven(2))
+    println("Fourth Exercise isEven2:");
+    println(isEven2(2))
+
+    // encode-decode-hashing
+    println()
+    println("Encoded text:");
+    println(encode("Koncz Hunor baba"))
+    println("Decoded text:");
+    println(decode("S29uY3ogSHVub3IgYmFiYQ=="))
+}
+
