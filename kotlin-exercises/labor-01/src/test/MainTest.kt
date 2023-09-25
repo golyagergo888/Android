@@ -25,6 +25,39 @@ fun exercise2(){
     days.filter{it.length == 6 }.forEach{print(it + ", ") }
 }
 
+fun list_array(){
+    // List
+    val fruits = mutableListOf("apple", "cherry", "lime")
+    fruits.add("watermelon")
+    fruits.remove("lime")
+
+    val filteredFruits = fruits.filter { it.startsWith("A") }
+    val lengths = fruits.map { it.length }
+
+    fruits.forEach { println(it) }
+    if (fruits.any { it.length > 5 }) {
+        println("Fruits wich has 5 lenght.")
+    }
+
+    val sortedFruits = fruits.sortedBy { it.length }
+
+    // Array
+    val numbers = arrayOf(1, 2, 3, 4, 5)
+    val firstNumber = numbers[0]
+    numbers[3] = 42
+
+    val filteredNumbers = numbers.filter { it % 2 == 0 }
+    val doubledNumbers = numbers.map { it * 2 }
+
+    numbers.forEach { println(it) }
+    numbers[3] = 9
+    if (numbers.all { it < 10 }) {
+        println("All numbers are less then 10.\n")
+    }
+
+    val sortedNumbers = numbers.sortedByDescending { it }
+}
+
 fun isPrime(a:Int) :Boolean{
     if (a <= 1) {
         return false
@@ -68,7 +101,7 @@ fun main(args: Array<String>) {
     var number2 = 2
     println("number: " + number)
     println("number2: " + number2)
-    //	asd = 3; <- immutable
+    //	number = 3; <- immutable
     number2 = 4
     println("number: " + number)
     println("number2: " + number2)
@@ -85,6 +118,8 @@ fun main(args: Array<String>) {
     println("Second Exercise days of week in list:")
     exercise2()
     println("\n")
+    println("Lists and arrays:")
+    list_array()
     println("Third Exercise isPrime:")
     println(isPrime(2))
     println()
@@ -99,5 +134,62 @@ fun main(args: Array<String>) {
     println(encode("Koncz Hunor baba"))
     println("Decoded text:");
     println(decode("S29uY3ogSHVub3IgYmFiYQ=="))
+
+    // HOMEWORK
+//    5
+    println("\n\tHOMEWORK")
+    println("\tTask 5:")
+    printEvenNumbers(listOf( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ))
+//    6
+    val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+    println("\n\tTask 6:")
+    doubleElements(listOf( 1, 2, 3, 4, 5, 6 ))
+    println()
+    capitalizedDays(days)
+    println()
+    firstCharOfCapitalizedDays(days)
+    println()
+    lengthOfTheDays(days)
+    println()
+    println("${days.map { it.length }.sum()}, ${days.size} => ${String.format("%.2f", (days.map { it.length }.sum().toDouble() / days.size))}")
+    print(averageLengthOfTheDays(days))
+//    7
+    val iDays = mutableListOf<String>()
+    iDays.addAll(days)
+    println("\n\tTask 7:")
+    removeN(iDays)
+    println()
+    removeNAndIndex(iDays)
+    sortRemovedNDays(iDays)
+}
+
+fun printEvenNumbers(numbers: List<Int>) = numbers.filter { it % 2 == 0 }.forEach{print("${it}, ") }
+
+fun doubleElements(numbers: List<Int>) = numbers.map {it * 2}.forEach{print("${it}, ") }
+
+fun capitalizedDays(days: List<String>) = days.map { it.capitalize() }.forEach{print("${it}, ") }
+
+fun firstCharOfCapitalizedDays(days: List<String>) = days.map { it.toLowerCase().first() }.forEach{print("${it}, ") }
+
+fun lengthOfTheDays(days: List<String>) = days.map { it.capitalize() }.forEach{print("${it} -> ${it.length}, ") }
+
+fun averageLengthOfTheDays(days: List<String>) = days.map { it.length }.sum() / days.size
+
+fun removeN(days: MutableList<String>) = days.filter { !it.contains('n') }.forEach{print( "${it.capitalize()}, ")}
+
+fun removeNAndIndex(days: MutableList<String>){
+    days.removeIf { it.contains('n') }
+
+    for ((index, day) in days.withIndex()) {
+        println("Item at $index is ${day.capitalize()}")
+    }
+}
+
+fun sortRemovedNDays(days: MutableList<String>){
+    days.removeIf { it.contains('n') }
+    days.sort()
+    for (day in days) {
+        print(day.capitalize() + ", ")
+    }
 }
 
