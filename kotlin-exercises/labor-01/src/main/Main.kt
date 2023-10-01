@@ -1,5 +1,7 @@
 package main
 
+import extra.groupAnagrams
+
 fun main(args: Array<String>) {
     println("Hello World!")
 

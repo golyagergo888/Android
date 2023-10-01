@@ -1,6 +1,8 @@
 package main
 
+import java.util.Arrays
 import java.util.Base64
+import kotlin.random.Random
 
 fun exercise1(){
     val a = 2
@@ -143,24 +145,49 @@ fun main(args: Array<String>) {
 //    6
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
     println("\n\tTask 6:")
+    // a
     doubleElements(listOf( 1, 2, 3, 4, 5, 6 ))
     println()
+    // b
     capitalizedDays(days)
     println()
+    // c
     firstCharOfCapitalizedDays(days)
     println()
+    // d
     lengthOfTheDays(days)
     println()
+    // e
     println("${days.map { it.length }.sum()}, ${days.size} => ${String.format("%.2f", (days.map { it.length }.sum().toDouble() / days.size))}")
     print(averageLengthOfTheDays(days))
 //    7
+    println("\n\tTask 7:")
     val iDays = mutableListOf<String>()
     iDays.addAll(days)
-    println("\n\tTask 7:")
+    // a
     removeN(iDays)
     println()
+    // b
     removeNAndIndex(iDays)
+    // c
     sortRemovedNDays(iDays)
+//    8
+    println("\n\tTask 8:")
+    val randomIntegers = Array<Int>(10) { Random.nextInt(101) }
+    // a
+    randomIntegers.forEach {print("${it}, ") }
+    println()
+    // b
+    sortRandomArray(randomIntegers)
+    println()
+    // c
+    print(randomContainsEven(randomIntegers))
+    println()
+    // d
+    print(randomAllEven(randomIntegers))
+    println()
+    //e
+    avgRandomArray(randomIntegers)
 }
 
 fun printEvenNumbers(numbers: List<Int>) = numbers.filter { it % 2 == 0 }.forEach{print("${it}, ") }
@@ -193,3 +220,19 @@ fun sortRemovedNDays(days: MutableList<String>){
     }
 }
 
+fun sortRandomArray(array: Array<Int>){
+    array.sort();
+    array.forEach{print( "${it}, ")}
+}
+
+fun randomContainsEven(array: Array<Int>) = array.any{ it % 2 == 0 }
+
+fun randomAllEven(array: Array<Int>) = array.all{ it % 2 == 0 }
+
+fun avgRandomArray(array: Array<Int>){
+    val sum = array.sum()
+
+    val average = if (array.isNotEmpty()) sum.toDouble() / array.size else 0.0
+
+    println("Sum: ${sum}, Average: $average")
+}
