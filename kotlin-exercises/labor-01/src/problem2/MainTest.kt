@@ -1,6 +1,5 @@
-package main
+package problem1
 
-import java.util.Arrays
 import java.util.Base64
 import kotlin.random.Random
 
