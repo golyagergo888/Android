@@ -5,5 +5,10 @@ fun main() {
     val itemService = ItemService(itemRepository)
     val itemController = ItemController(itemService)
 
-    itemController.quiz(5)
+    print("How many questions do you want? ")
+    val numberOfQuestions = readLine()?.toIntOrNull()
+
+    if (numberOfQuestions != null) {
+        itemController.quiz(numberOfQuestions)
+    }
 }
