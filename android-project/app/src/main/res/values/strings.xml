@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">RecipesApp</string>
+    <string name="app_name">RecipeHub</string>
+    <string name="start_button">Start</string>
+    <string name="enter_username">Enter username</string>
 </resources>
