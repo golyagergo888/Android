@@ -12,33 +12,37 @@ import com.tasty.recipesapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//        Log.d("MainActivity", "onCreate: MainActivity created.")
+//
+//        val binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Log.d("MainActivity", "onCreate: MainActivity created.")
-
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.d("MainActivity", "onCreate: MainActivity created.")
 
-//        val navController  = this.findNavController( R.id.nav_host_fragment)
-//        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
-//        bottomNavigationView.setupWithNavController(navController)
-//        bottomNavigationView.setOnItemSelectedListener { item->
-//            when(item.itemId){
-//                R.id.homeFragment -> {
-//                    navController.navigate(R.id.homeFragment)
-//                    true
-//                }
-//                R.id.profileFragment -> {
-//                    navController.navigate(R.id.profileFragment)
-//                    true
-//                }
-//                R.id.recipesFragment -> {
-//                    navController.navigate(R.id.recipesFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+        val navController  = this.findNavController( R.id.nav_host_fragment)
+        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setupWithNavController(navController)
+        bottomNavigationView.setOnItemSelectedListener { item->
+            when(item.itemId){
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment)
+                    true
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment)
+                    true
+                }
+                R.id.recipesFragment -> {
+                    navController.navigate(R.id.recipesFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onStart() {
