@@ -1,0 +1,14 @@
+- ACTIVITY -> Fo komponens
+- FRAGMENT -> Mellekkomponens
+
+- valaminek a resze
+- kepernyofelosztas
+- van lifecycle
+
+MAX 3 Activity -> Splash, Main, Settings - de inkabb 2
+-> Cel hogy keves activity, sok Fragmens
+
+
+NAVIGATION, MENU
+-> gradle, resource file
+menu -> MainActivity
