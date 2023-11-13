@@ -1,0 +1,219 @@
+package com.tasty.recipesapp.repository.recipe.model
+import kotlin.collections.emptyList as emptyList1
+
+data class RecipeDTO(
+    val id: Int,
+    val name: String? = "Default name",
+    val description: String? = "Default description",
+    val nutrition: NutritionDTO?,
+    val credits: List<CreditDTO?> = emptyList1(),
+    val instructions: List<InstructionDTO?> = emptyList1(),
+    val sections: List<SectionDTO?> = emptyList1(),
+    val components: List<ComponentDTO?> = emptyList1(),
+    val ingredient: IngredientDTO?,
+    val measurements: List<MeasurementDTO?> = emptyList1(),
+    val unit: UnitDTO?,
+    val tags: List<TagDTO?> = emptyList1(),
+    val user_ratings: UserRatingsDTO?,
+    val topics: List<TopicDTO?>
+)
+
+data class NutritionDTO(
+    val fiber: Int,
+    val updated_at: String? = "Default updated_at",
+    val protein: Int,
+    val fat: Int,
+    val calories: Int,
+    val sugar: Int,
+    val carbohydrates: Int
+)
+
+data class CreditDTO(
+    val name: String? = "Default name",
+    val type: String? = "Default type"
+)
+
+data class InstructionDTO(
+    val appliance: String? = "Default appliance",
+    val end_time: Int,
+    val temperature: String? = "Default temperature",
+    val id: Int,
+    val position: Int,
+    val display_text: String? = "Default display_text",
+    val start_time: Int
+)
+
+data class SectionDTO(
+    val components: List<ComponentDTO?> = emptyList1(),
+    val name: String,
+    val position: Int
+)
+
+data class ComponentDTO(
+    val raw_text: String? = "Default raw_text",
+    val extra_comment: String? = "Default extra_comment",
+    val ingredient: IngredientDTO?,
+    val id: Int,
+    val position: Int,
+    val measurements: List<MeasurementDTO?>?
+)
+
+data class IngredientDTO(
+    val created_at: Long,
+    val display_plural: String? = "Default display_plural",
+    val display_singular: String? = "Default display_singular",
+    val updated_at: Long,
+    val id: Int,
+    val name: String? = "Default name"
+)
+
+data class MeasurementDTO(
+    val unit: UnitDTO?,
+    val quantity: String? = "Default quantity",
+    val id: Int
+)
+
+data class UnitDTO(
+    val system: String? = "Default system",
+    val name: String? = "Default name",
+    val display_plural: String? = "Default display_plural",
+    val display_singular: String? = "Default display_singular",
+    val abbreviation: String? = "Default abbreviation",
+)
+
+data class TagDTO(
+    val root_tag_type: String? = "Default root_tag_type",
+    val name: String? = "Default name",
+    val id: Int,
+    val display_name: String? = "Default display_name",
+    val type: String? = "Default type"
+)
+
+data class TopicDTO(
+    val name: String? = "Default name",
+    val slug: String? = "Default slug"
+)
+
+data class UserRatingsDTO(
+    val count_positive: Int,
+    val score: Double,
+    val count_negative: Int
+)
+
+fun NutritionDTO.toModel(): NutritionModel {
+    return NutritionModel(
+        fiber = this.fiber,
+        updated_at = this.updated_at,
+        protein = this.protein,
+        fat = this.fat,
+        calories = this.calories,
+        sugar = this.sugar,
+        carbohydrates = this.carbohydrates
+    )
+}
+
+
+
+fun CreditDTO.toModel(): CreditModel {
+    return CreditModel(
+        name = this.name,
+        type = this.type
+    )
+}
+
+fun InstructionDTO.toModel(): InstructionModel {
+    return InstructionModel(
+        appliance = this.appliance,
+        end_time = this.end_time,
+        temperature = this.temperature,
+        position = this.position,
+        display_text = this.display_text,
+        start_time = this.start_time
+    )
+}
+
+fun SectionDTO.toModel(): SectionModel {
+    return SectionModel(
+        components = this.components.map { it?.toModel() },
+        name = this.name,
+        position = this.position
+    )
+}
+fun ComponentDTO.toModel(): ComponentModel {
+    return ComponentModel(
+        raw_text = this.raw_text,
+        extra_comment = this.extra_comment,
+        ingredient = this.ingredient?.toModel(),
+        measurements = this.measurements?.map { it?.toModel() } ?: emptyList1()
+    )
+}
+
+fun IngredientDTO.toModel(): IngredientModel {
+    return IngredientModel(
+//        created_at = this.created_at,
+//        display_plural = this.display_plural,
+//        display_singular = this.display_singular,
+//        updated_at = this.updated_at,
+        name = this.name?:"Default name"
+    )
+}
+
+fun MeasurementDTO.toModel(): MeasurementModel {
+    return MeasurementModel(
+        unit = this.unit?.toModel(),
+        quantity = this.quantity?:"Default quantity"
+    )
+}
+
+fun UnitDTO.toModel(): UnitModel {
+    return UnitModel(
+        system = this.system?:"Default system",
+        name = this.name?:"Default name",
+    )
+}
+
+fun TagDTO.toModel(): TagModel{
+    return TagModel(
+        root_tag_type = this.root_tag_type,
+        name = this.name,
+        display_name = this.display_name,
+        type = this.type
+    )
+}
+
+fun UserRatingsDTO.toModel(): UserRatingModel {
+    return UserRatingModel(
+        count_positive = this.count_positive,
+        score = this.score,
+        count_negative = this.count_negative
+    )
+}
+
+fun TopicDTO.toModel(): TopicModel {
+    return TopicModel(
+        name = this.name,
+        slug = this.slug
+    )
+}
+
+fun RecipeDTO.toModel(): RecipeModel {
+    return RecipeModel(
+        name = this.name ?: "Default name",
+        description = this.description ?: "Default description",
+        nutrition = this.nutrition?.toModel(),
+        credits = this.credits.map { it?.toModel() },
+        instructions = this.instructions.map { it?.toModel() },
+        sections = this.sections.map { it?.toModel() },
+//        components = this.components.map { it?.toModel() } ?: emptyList1(),
+        ingredient = this.ingredient?.toModel(),
+//        measurements = this.measurements.map { it?.toModel() } ?: emptyList1(),
+        unit = this.unit?.toModel(),
+        tags = this.tags.map { it?.toModel() },
+        user_ratings = this.user_ratings?.toModel(),
+        topics = this.topics.map { it?.toModel() }
+    )
+}
+
+fun List<RecipeDTO>.toModelList(): List<RecipeModel> {
+    return this.map { it.toModel() }
+}

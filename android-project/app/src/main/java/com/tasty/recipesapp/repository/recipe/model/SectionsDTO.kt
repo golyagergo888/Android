@@ -1,19 +1,11 @@
 package com.tasty.recipesapp.repository.recipe.model
 
-class SectionsDTO(
-    val sections: List<SectionDTO>
-)
+import kotlin.collections.emptyList as emptyList1
 
 fun SectionDTO.toModel(): SectionModel {
     return SectionModel(
-        components = this.components.toModelList(),
+        components = this.components.map { it?.toModel() } ?: emptyList1(),
         name = this.name,
         position = this.position
     )
-}
-
-fun List<SectionDTO>.toModelList(): List<SectionModel> {
-    return this.map {
-        it.toModel()
-    }
 }

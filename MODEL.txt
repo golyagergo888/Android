@@ -1,0 +1,89 @@
+package com.tasty.recipesapp.repository.recipe.model
+data class RecipeModel(
+    val name: String?,
+    val description: String?,
+    val nutrition: NutritionModel?,
+    val credits: List<CreditModel?> = emptyList(),
+    val instructions: List<InstructionModel?>,
+    val sections: List<SectionModel?> = emptyList(),
+    val components: List<ComponentModel?> = emptyList(),
+    val ingredient: IngredientModel?,
+    val measurements: List<MeasurementModel?> = emptyList(),
+    val unit: UnitModel?,
+    val tags: List<TagModel?> = emptyList(),
+    val user_ratings: UserRatingModel?,
+    val topics: List<TopicModel?>
+)
+
+data class NutritionModel(
+    val fiber: Int,
+    val updated_at: String?,
+    val protein: Int,
+    val fat: Int,
+    val calories: Int,
+    val sugar: Int,
+    val carbohydrates: Int
+)
+
+data class CreditModel(
+    val name: String?,
+    val type: String?
+)
+
+data class InstructionModel(
+    val appliance: String?,
+    val end_time: Int,
+    val temperature: String?,
+    val position: Int,
+    val display_text: String?,
+    val start_time: Int
+)
+
+data class SectionModel(
+    val components: List<ComponentModel?> = emptyList(),
+    val name: String?,
+    val position: Int
+)
+
+data class ComponentModel(
+    val raw_text: String?,
+    val extra_comment: String?,
+    val ingredient: IngredientModel?,
+    val measurements: List<MeasurementModel?> = emptyList()
+)
+
+data class IngredientModel(
+//    val created_at: Long,
+//    val display_plural: String?,
+//    val display_singular: String?,
+//    val updated_at: Long,
+    val name: String?
+)
+
+data class MeasurementModel(
+    val unit: UnitModel?,
+    val quantity: String?
+)
+
+data class UnitModel(
+    val system: String? = "Default system",
+    val name: String? = "Default name",
+)
+
+data class TagModel(
+    val root_tag_type: String?,
+    val name: String?,
+    val display_name: String?,
+    val type: String?
+)
+
+data class TopicModel(
+    val name: String?,
+    val slug: String?
+)
+
+data class UserRatingModel(
+    val count_positive: Int,
+    val score: Double,
+    val count_negative: Int
+)
