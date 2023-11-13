@@ -69,4 +69,7 @@ dependencies {
 
     // Menu
     implementation ("com.google.android.material:material:1.11.0-beta01")
+
+    // GSON
+    implementation("com.google.code.gson:gson:2.8.9")
 }

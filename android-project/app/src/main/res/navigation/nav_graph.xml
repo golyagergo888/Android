@@ -7,13 +7,13 @@
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.tasty.recipesapp.Activity.MainActivity"
+        android:name="com.tasty.recipesapp.activity.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 
     <activity
         android:id="@+id/splashActivity"
-        android:name="com.tasty.recipesapp.Activity.SplashActivity"
+        android:name="com.tasty.recipesapp.activity.SplashActivity"
         android:label="activity_splash"
         tools:layout="@layout/activity_splash" />
 
