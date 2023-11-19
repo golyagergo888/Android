@@ -9,14 +9,13 @@ fun RecipeDTO.toModel(): RecipeModel {
     return RecipeModel(
         name = this.name ?: "Default name",
         description = this.description ?: "Default description",
+        thumbnail_url = this.thumbnail_url ?: "Default thumbnail_url",
+        original_video_url = this.original_video_url ?: "Default original_video_url",
+        price = this.price?.toModel(),
         nutrition = this.nutrition?.toModel(),
         credits = this.credits.map { it?.toModel() },
         instructions = this.instructions.map { it?.toModel() },
         sections = this.sections.map { it?.toModel() },
-//        components = this.components.map { it?.toModel() } ?: emptyList1(),
-        ingredient = this.ingredient?.toModel(),
-//        measurements = this.measurements.map { it?.toModel() } ?: emptyList1(),
-        unit = this.unit?.toModel(),
         tags = this.tags.map { it?.toModel() },
         user_ratings = this.user_ratings?.toModel(),
         topics = this.topics.map { it?.toModel() }

@@ -5,7 +5,7 @@ class ComponentModel (
     val ingredient: IngredientModel?,
     val id: Long,
     val position: Long,
-    val measurements: List<MeasurementModel?>?,
+    val measurements: List<MeasurementModel?> = emptyList(),
     val raw_text: String?,
 ){
     override fun toString(): String {
