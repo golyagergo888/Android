@@ -23,18 +23,15 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
+        val viewModel = ViewModelProvider(this)[RecipeListViewModel::class.java]
 
         context?.let {
             viewModel.fetchRecipesData(it)
         }
 
-        viewModel.resipeList.observe(viewLifecycleOwner) { recipes ->
+        viewModel.recipeList.observe(viewLifecycleOwner) { recipes ->
             for (recipe in recipes) {
-                Log.d(TAG, "Recipe Name, ${ recipe.name }" )
-                Log.d(TAG, "Recipe Description, ${ recipe.description }" )
-                Log.d(TAG, "Recipe Nutrition, ${ recipe.nutrition}" )
-                Log.d(TAG, "Recipe Credits, ${ recipe.credits}" )
+                Log.d(TAG, "Recipe: ${recipe.toString()}" )
                 Log.d(TAG, "-------------------------------------------" )
             }
         }

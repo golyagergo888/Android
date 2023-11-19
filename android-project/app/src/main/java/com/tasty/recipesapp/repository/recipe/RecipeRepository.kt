@@ -18,6 +18,7 @@ object RecipeRepository {
                 context.assets.open("all_recipes.json").bufferedReader().use { it.readText() }
         } catch (ioException: IOException) {
             Log.e(TAG, "Error occurred while reading JSON file: ${ioException.message}")
+            return emptyList()
         }
         val recipesResponse: RecipesDTO =
             Gson().fromJson(jsonString, object : TypeToken<RecipesDTO>() {}.type)

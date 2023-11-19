@@ -10,9 +10,9 @@ class RecipeListViewModel : ViewModel() {
     private val repository = RecipeRepository
 
     // Live data
-    var resipeList: MutableLiveData<List<RecipeModel>> = MutableLiveData()
+    var recipeList: MutableLiveData<List<RecipeModel>> = MutableLiveData()
 
     fun fetchRecipesData(context: Context) {
-        resipeList.value = repository.getRecipes(context)
+        recipeList.value = repository.getRecipes(context)
     }
 }

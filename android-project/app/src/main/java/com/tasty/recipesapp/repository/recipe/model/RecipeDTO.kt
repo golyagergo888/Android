@@ -12,7 +12,7 @@ data class RecipeDTO(
     val sections: List<SectionDTO?> = emptyList1(),
     val components: List<ComponentDTO?> = emptyList1(),
     val ingredient: IngredientDTO?,
-    val measurements: List<MeasurementDTO?> = emptyList1(),
+//    val measurements: List<MeasurementDTO?> = emptyList1(),
     val unit: UnitDTO?,
     val tags: List<TagDTO?> = emptyList1(),
     val user_ratings: UserRatingsDTO?,

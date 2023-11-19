@@ -6,7 +6,11 @@ class InstructionModel(
     val id: Int,
     val display_text: String?,
     val time: InstructionTime?
-)
+){
+    override fun toString(): String {
+        return "{appliance=${this.appliance}, temperature=${this.temperature}, id=${this.id}, display_text=${this.display_text}, time=${this.time}}"
+    }
+}
 
 class InstructionTime(
     val start_time: Int,
