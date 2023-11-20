@@ -72,4 +72,10 @@ dependencies {
 
     // GSON
     implementation("com.google.code.gson:gson:2.8.9")
+
+    //Image
+    implementation ("com.squareup.picasso:picasso:2.71828")
+
+    //CardView
+    implementation ("androidx.cardview:cardview:1.0.0")
 }

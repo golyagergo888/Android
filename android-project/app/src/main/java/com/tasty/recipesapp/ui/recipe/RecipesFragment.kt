@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tasty.recipesapp.R
+import com.tasty.recipesapp.repository.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 
 class RecipesFragment : Fragment() {
@@ -34,6 +37,17 @@ class RecipesFragment : Fragment() {
                 Log.d(TAG, "Recipe: ${recipe.toString()}" )
                 Log.d(TAG, "-------------------------------------------" )
             }
+            // Create adapter
+            val adapter = RecipesListAdapter(recipes, requireContext())
+
+            // Setup recycler view
+            val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(context) // Use the appropriate layout manager
+
+            // Set adapter to recycler view
+            recyclerView.adapter = adapter
         }
+
+
     }
 }

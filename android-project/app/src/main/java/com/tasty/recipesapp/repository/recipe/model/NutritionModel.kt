@@ -10,9 +10,9 @@ class NutritionModel(
     val fat: Long,
 ) {
     override fun toString(): String {
-        return "calories=${this.calories}, sugar=${this.sugar}, carbohydrates=${this.carbohydrates}, " +
-                "fiber=${this.fiber}, updated_at=${this.updated_at}, protein=${this.protein}, " +
-                "fat=${this.fat}"
+        return "calories: ${this.calories}\n sugar: ${this.sugar}\n carbohydrates: ${this.carbohydrates}\n" +
+                "fiber: ${this.fiber}\n protein: ${this.protein}\n fat: ${this.fat}"
+
     }
 }
 
