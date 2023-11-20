@@ -10,6 +10,7 @@ import com.tasty.recipesapp.databinding.ActivityMainBinding
 import com.tasty.recipesapp.databinding.RecipeListItemBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.squareup.picasso.Picasso;
+import com.tasty.recipesapp.R
 
 class RecipesListAdapter(
     private var recipesList: List<RecipeModel>,
@@ -46,7 +47,7 @@ class RecipesListAdapter(
 
         val thumbnailUrl = currentRecipe.thumbnail_url
         if (thumbnailUrl != null && thumbnailUrl.isNotEmpty()) {
-            Picasso.get().load(thumbnailUrl).into(holder.recipeImageView)
+            Picasso.get().load(thumbnailUrl).placeholder(R.drawable.ic_launcher_background).into(holder.recipeImageView)
         }
     }
 }
