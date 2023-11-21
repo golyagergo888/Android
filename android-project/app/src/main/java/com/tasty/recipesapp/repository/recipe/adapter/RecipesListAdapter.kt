@@ -33,7 +33,8 @@ class RecipesListAdapter(
         val recipeTitleView: TextView = binding.recipeTitleView
         val recipeDescriptionView: TextView = binding.recipeDescriptionView
         val recipeNutritionView: TextView = binding.recipeNutritionView
-        val recipeRatingView: TextView = binding.recipeRatingView
+        val recipeRatingView: TextView = binding.ratingTextView
+        val recipePriceView: TextView = binding.priceTextView
         val recipeImageView: ImageView = binding.recipeImageView
     }
 
@@ -44,6 +45,7 @@ class RecipesListAdapter(
         // Bind other properties as needed
         holder.recipeNutritionView.text = currentRecipe.nutrition?.toString() ?: "No Nutrition"
         holder.recipeRatingView.text = currentRecipe.user_ratings?.toString() ?: "No Rating"
+        holder.recipePriceView.text = currentRecipe.price?.toString() ?: "No Price"
 
         val thumbnailUrl = currentRecipe.thumbnail_url
         if (thumbnailUrl != null && thumbnailUrl.isNotEmpty()) {
