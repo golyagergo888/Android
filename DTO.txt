@@ -124,7 +124,7 @@ fun CreditDTO.toModel(): CreditModel {
 fun InstructionDTO.toModel(): InstructionModel {
     return InstructionModel(
         appliance = this.appliance,
-        end_time = this.end_time,
+        end_time = this.end_time,	
         temperature = this.temperature,
         position = this.position,
         display_text = this.display_text,

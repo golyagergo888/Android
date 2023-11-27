@@ -3,7 +3,7 @@ package com.tasty.recipesapp.repository.recipe.model
 import kotlin.collections.emptyList as emptyList1
 
 data class RecipeDTO(
-    val id: Int,
+    val id: Long,
     val name: String? = "Default name",
     val description: String? = "Default description",
     val thumbnail_url: String? = "Default thumbnail_url",

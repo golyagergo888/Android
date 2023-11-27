@@ -11,6 +11,9 @@ import java.io.IOException
 
 object RecipeRepository {
     private val TAG: String? = RecipeRepository::class.java.canonicalName
+    private var recipesList: List<RecipeModel> = emptyList()
+    private var myRecipesList: ArrayList<RecipeModel> = ArrayList()
+
     fun getRecipes(context: Context): List<RecipeModel> {
         lateinit var jsonString: String
         try {
@@ -22,6 +25,13 @@ object RecipeRepository {
         }
         val recipesResponse: RecipesDTO =
             Gson().fromJson(jsonString, object : TypeToken<RecipesDTO>() {}.type)
-        return recipesResponse.results.toModelList()
+
+        recipesList = recipesResponse.results.toModelList()
+
+        return recipesList
+    }
+
+    fun getRecipeDetailById(recipeId: Long): RecipeModel?{
+        return recipesList.find { it.id == recipeId }
     }
 }

@@ -1,11 +1,14 @@
 package com.tasty.recipesapp.repository.recipe.adapter
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tasty.recipesapp.databinding.ActivityMainBinding
 import com.tasty.recipesapp.databinding.RecipeListItemBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
@@ -14,8 +17,10 @@ import com.tasty.recipesapp.R
 
 class RecipesListAdapter(
     private var recipesList: List<RecipeModel>,
-    private val context: Context
+    private val context: Context,
+    var onItemClick: ((RecipeModel) -> Unit)
 ) : RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -36,6 +41,15 @@ class RecipesListAdapter(
         val recipeRatingView: TextView = binding.ratingTextView
         val recipePriceView: TextView = binding.priceTextView
         val recipeImageView: ImageView = binding.recipeImageView
+
+        init {
+            binding.root.setOnClickListener {
+                val currentPosition = this.bindingAdapterPosition
+                val currentRecipe = recipesList[currentPosition]
+
+                onItemClick(currentRecipe)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: RecipeItemViewHolder, position: Int) {
@@ -48,8 +62,18 @@ class RecipesListAdapter(
         holder.recipePriceView.text = currentRecipe.price?.toString() ?: "No Price"
 
         val thumbnailUrl = currentRecipe.thumbnail_url
-        if (thumbnailUrl != null && thumbnailUrl.isNotEmpty()) {
-            Picasso.get().load(thumbnailUrl).placeholder(R.drawable.ic_launcher_background).into(holder.recipeImageView)
+        if (!thumbnailUrl.isNullOrEmpty()) {
+            Log.d(TAG, "AAAthumbnailUrl: $thumbnailUrl")
+            Picasso.get().load(thumbnailUrl).placeholder(R.drawable.ic_launcher_background)
+                .into(holder.recipeImageView)
+//            Glide.with(context)
+//                .load(thumbnailUrl)
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .into(holder.recipeImageView)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(currentRecipe)
         }
     }
 }

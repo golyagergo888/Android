@@ -7,6 +7,7 @@ class RecipesDTO(
 
 fun RecipeDTO.toModel(): RecipeModel {
     return RecipeModel(
+        id = this.id,
         name = this.name ?: "Default name",
         description = this.description ?: "Default description",
         thumbnail_url = this.thumbnail_url ?: "Default thumbnail_url",
