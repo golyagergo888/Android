@@ -7,12 +7,40 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="381dp"
+        android:layout_height="43dp"
         android:text="@string/hello_profile_fragment"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="3dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="396dp"
+        android:layout_height="617dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="TODO" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.tasty.recipesapp.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.util.Log
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.ActivitySplashBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

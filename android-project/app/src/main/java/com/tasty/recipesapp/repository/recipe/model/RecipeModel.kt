@@ -21,7 +21,13 @@ class RecipeModel(
                 "tags=${this.tags.toString()},\n user_ratings=${this.user_ratings.toString()},\n topics=${this.topics.toString()}\n}"
     }
 
-    fun getRecipeId(): Long {
-        return this.id ?: 0
+    fun getInstructionsList(): String {
+        val stringBuilder = StringBuilder()
+
+        for ((index, instruction) in instructions.withIndex()) {
+            stringBuilder.append("${index + 1}. ${instruction?.display_text}.\n")
+        }
+
+        return stringBuilder.toString()
     }
 }
