@@ -48,6 +48,7 @@ class RecipeDetailFragment : Fragment() {
             binding.recipeTitleView.text = recipe?.name
             binding.recipeDescriptionView.text = recipe?.description
             binding.detailInstructions.text = recipe?.getInstructionsList()
+            binding.detailIngredients.text = recipe?.getRecipeIngredientsList()
 
             val thumbnailUrl = recipe.thumbnail_url
             if (!thumbnailUrl.isNullOrEmpty()) {

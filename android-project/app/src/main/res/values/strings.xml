@@ -12,4 +12,33 @@
     <string name="profile">Profile</string>
     <string name="todo">TODO</string>
 
+    <string name="creatorInfo">Created by: Siko Szabolcs 2023</string>
+    <string name="WelcomeScreenMessage1">Welcome</string>
+    <string name="WelcomeScreenMessage2">to the RecipeHub</string>
+    <string name="WelcomeScreenDescription">Where you can find the best recipes and tips to enjoy a culinary experience</string>
+    <string name="StartButtonText">Get started</string>
+
+    <string name="HomeMenuTitle">Home</string>
+    <string name="RecipeMenuTitle">Recipe</string>
+    <string name="ProfileMenuTitle">Profile</string>
+
+    <string name="RattingWord">Rating:</string>
+    <string name="DetailsWord">DETAILS</string>
+    <string name="AddToWishList">ADD TO WISHLIST</string>
+    <string name="AddNewRecipe">Add new Recipe</string>
+
+    <string name="TitleString">Title</string>
+    <string name="DescriptionString">Description</string>
+    <string name="PictureURLString">Picture URL</string>
+    <string name="CookTimeString">Cook Time (Minutes)</string>
+
+    <string name="Ingredients">Ingredients</string>
+    <string name="Add">Add</string>
+    <string name="Instructions">Instructions</string>
+
+    <string name="SaveRecipe">Save Recipe</string>
+
+    <string name="Delete">Delete</string>
+    <string name="CreatedAt">Created at: </string>
+
 </resources>

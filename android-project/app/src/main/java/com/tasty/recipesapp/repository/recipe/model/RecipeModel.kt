@@ -13,7 +13,8 @@ class RecipeModel(
     val sections: List<SectionModel?> = emptyList(),
     val tags: List<TagModel?> = emptyList(),
     val user_ratings: UserRatingsModel?,
-    val topics: List<TopicModel?>
+    val topics: List<TopicModel?>,
+    val cook_time_minutes: Int? = null,
 ) {
     override fun toString(): String {
         return "{name=${this.name},\n description=${this.description},\n thumb_url=${this.thumbnail_url},\n video_url = ${this.original_video_url},\n price=${this.price.toString()},\n nutrition=${this.nutrition.toString()},\n " +
@@ -26,6 +27,16 @@ class RecipeModel(
 
         for ((index, instruction) in instructions.withIndex()) {
             stringBuilder.append("${index + 1}. ${instruction?.display_text}.\n")
+        }
+
+        return stringBuilder.toString()
+    }
+
+    fun getRecipeIngredientsList(): String {
+        val stringBuilder = StringBuilder()
+
+        for ((index, section) in sections.withIndex()) {
+            stringBuilder.append("${section?.getSectionIngredientsList()}\n")
         }
 
         return stringBuilder.toString()

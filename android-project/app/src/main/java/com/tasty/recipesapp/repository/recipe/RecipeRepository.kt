@@ -1,5 +1,6 @@
 package com.tasty.recipesapp.repository.recipe
 
+import android.content.ContentValues
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
@@ -12,7 +13,7 @@ import java.io.IOException
 object RecipeRepository {
     private val TAG: String? = RecipeRepository::class.java.canonicalName
     private var recipesList: List<RecipeModel> = emptyList()
-    private var myRecipesList: ArrayList<RecipeModel> = ArrayList()
+    private var myRecipeList: ArrayList<RecipeModel> = ArrayList()
 
     fun getRecipes(context: Context): List<RecipeModel> {
         lateinit var jsonString: String
@@ -29,6 +30,28 @@ object RecipeRepository {
         recipesList = recipesResponse.results.toModelList()
 
         return recipesList
+    }
+
+    fun insertRecipe(recipeEntity: RecipeModel): Boolean {
+        Log.d(TAG,"insertRecipe - called()")
+        Log.d(TAG,"Recipe Entity: name: ${recipeEntity.name} desc: ${recipeEntity.description}")
+        val res=myRecipeList.add(recipeEntity)
+        Log.d(TAG,"$res")
+        Log.d(TAG,"My Recipe List size: ${myRecipeList.size}")
+
+        return  res
+    }
+
+    fun deleteRecipe(recipeEntity: RecipeModel): Boolean {
+        Log.d(TAG, "AAAA RECIPE3: ${recipeEntity.toString()}")
+        return myRecipeList.remove(recipeEntity)
+    }
+
+    fun getMyRecipes():ArrayList<RecipeModel> {
+        Log.d(TAG,"getMyRecipes - called()")
+        Log.d(TAG,"My Recipe List size: ${myRecipeList.size}")
+
+        return myRecipeList
     }
 
     fun getRecipeDetailById(recipeId: Long): RecipeModel?{

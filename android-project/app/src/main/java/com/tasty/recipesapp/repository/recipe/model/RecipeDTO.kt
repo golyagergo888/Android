@@ -15,5 +15,6 @@ data class RecipeDTO(
     val sections: List<SectionDTO?> = emptyList1(),
     val tags: List<TagDTO?> = emptyList1(),
     val user_ratings: UserRatingsDTO?,
-    val topics: List<TopicDTO?>
+    val topics: List<TopicDTO?>,
+    val cookTimeMinutes: Int? = null,
 )

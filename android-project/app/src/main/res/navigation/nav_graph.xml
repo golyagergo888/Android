@@ -59,7 +59,11 @@
 
     <fragment
         android:id="@+id/newRecipeFragment"
-        android:name="com.tasty.recipesapp.repository.profile.viewmodel.NewRecipeFragment"
+        android:name="com.tasty.recipesapp.ui.recipe.NewRecipeFragment"
         android:label="NewRecipeFragment"
-        tools:layout="@layout/fragment_new_recipe"/>
+        tools:layout="@layout/fragment_new_recipe">
+        <action
+            android:id="@+id/action_newRecipeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>
