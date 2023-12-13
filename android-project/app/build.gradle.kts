@@ -88,9 +88,15 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.google.code.gson:gson:2.9.0")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // DB
+    implementation ("androidx.room:room-runtime:2.6.1")
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
 
     // Room dependencies
     implementation("androidx.room:room-runtime:2.6.1")

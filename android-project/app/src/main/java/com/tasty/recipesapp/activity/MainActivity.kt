@@ -8,37 +8,38 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.ActivityMainBinding
+import com.tasty.recipesapp.providers.RepositoryProvider
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        Log.d("MainActivity", "onCreate: MainActivity created.")
-//
-//        val binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d("MainActivity", "onCreate: MainActivity created.")
 
-        val navController  = this.findNavController( R.id.nav_host_fragment)
+        RepositoryProvider.initialize(applicationContext)
+
+        val navController = this.findNavController(R.id.nav_host_fragment)
         val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
         bottomNavigationView.setupWithNavController(navController)
-        bottomNavigationView.setOnItemSelectedListener { item->
-            when(item.itemId){
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.homeFragment -> {
                     navController.navigate(R.id.homeFragment)
                     true
                 }
+
                 R.id.profileFragment -> {
                     navController.navigate(R.id.profileFragment)
                     true
                 }
+
                 R.id.recipesFragment -> {
                     navController.navigate(R.id.recipesFragment)
                     true
                 }
+
                 else -> false
             }
         }
