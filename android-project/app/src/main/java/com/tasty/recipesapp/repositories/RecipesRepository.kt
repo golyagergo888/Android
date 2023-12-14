@@ -115,5 +115,17 @@ class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<R
 
         return recipe
     }
+
+    private val recipeApiClient = RecipeApiClient()
+
+    suspend fun getRecipesFromApi(
+        from: String,
+        size: String,
+        tags: String? = null
+    ): List<RecipeModel> {
+        val recipeList = recipeApiClient.getRecipes(from, size, tags)
+        Log.d(TAG, "getRecipesFromApi: $recipeList")
+        return emptyList()
+    }
 }
 

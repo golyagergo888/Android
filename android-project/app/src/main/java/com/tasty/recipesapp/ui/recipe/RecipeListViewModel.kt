@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.tasty.recipesapp.data.dtos.input.InstructionDTO
 import com.tasty.recipesapp.data.models.RecipeModel
 import com.tasty.recipesapp.providers.RepositoryProvider
+import com.tasty.recipesapp.repositories.RecipesRepository
 import kotlinx.coroutines.launch
 
 object RecipeListViewModel : ViewModel() {
@@ -40,10 +41,4 @@ object RecipeListViewModel : ViewModel() {
 
         return recipe
     }
-
-
-    fun fetchRecipeInstructionsFromFile(){
-        //Resources.getSystem().assets.open()
-    }
-
 }
