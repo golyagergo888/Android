@@ -1,5 +1,6 @@
 package com.tasty.recipesapp.ui.recipe
 
+import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
@@ -12,7 +13,9 @@ import com.tasty.recipesapp.data.dtos.input.InstructionDTO
 import com.tasty.recipesapp.data.models.RecipeModel
 import com.tasty.recipesapp.providers.RepositoryProvider
 import com.tasty.recipesapp.repositories.RecipesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object RecipeListViewModel : ViewModel() {
 
@@ -29,16 +32,36 @@ object RecipeListViewModel : ViewModel() {
             _recipesModels.postValue(data)
         }
     }
-    fun getRecipeById(id : Long) : RecipeModel?{
+
+    fun getRecipeById(id: Long): RecipeModel? {
         return _recipesModels.value?.find { it -> it.id.toLong() == id }
     }
 
     fun getRecipeFromDbById(id: Long): RecipeModel? {
-        var recipe : RecipeModel? = null
+        var recipe: RecipeModel? = null
         viewModelScope.launch {
             recipe = RepositoryProvider.recipesRepository.getRecipeFromDbById(id)
         }
 
         return recipe
     }
+
+    fun getAllRecipesFromApi(selectedOption: String? = null) {
+        val sortParameter =
+            if (selectedOption == "Price Desc") "price:desc"
+            else if (selectedOption == "Price Asc") "price:asc"
+            else if (selectedOption == "Rating") "rating:desc"
+            else if (selectedOption == "Total Time Asc") "total_time_minutes:asc"
+            else if (selectedOption == "Total Time Desc") "total_time_minutes:desc"
+            else null
+
+        viewModelScope.launch {
+            var recipes: List<RecipeModel> = emptyList()
+            recipes =
+                RepositoryProvider.recipesRepository.getRecipesFromApi(from = "0", size = "30", sort = sortParameter)
+
+            _recipesModels.postValue(recipes)
+        }
+    }
+
 }

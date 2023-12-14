@@ -22,11 +22,11 @@ class RecipeDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentRecipeDetailBinding
 
-    private val recipeListViewModel : RecipeListViewModel by viewModels()
+    private val recipeListViewModel: RecipeListViewModel by viewModels()
 
-    private val profileRecipeViewModel : ProfileRecipeDetailViewModel  by viewModels()
+    private val profileRecipeViewModel: ProfileRecipeDetailViewModel by viewModels()
 
-    private var recipe : RecipeModel? = null
+    private var recipe: RecipeModel? = null
 
     private var ingredients = mutableListOf<TextView>()
 
@@ -45,6 +45,7 @@ class RecipeDetailFragment : Fragment() {
 
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,17 +54,16 @@ class RecipeDetailFragment : Fragment() {
         val recipeType = arguments?.getString("recipeType")
 
 
-        if(recipeId != null){
+        if (recipeId != null) {
 
-            if(recipeType != null && recipeType == "Profile"){
+            if (recipeType != null && recipeType == "Profile") {
                 Log.d(TAG, "Profile")
                 profileRecipeViewModel.loadRecipeFromDbById(recipeId.toLong())
 
-                profileRecipeViewModel.recipeModel.observe(viewLifecycleOwner){ recipe ->
+                profileRecipeViewModel.recipeModel.observe(viewLifecycleOwner) { recipe ->
                     loadUi(recipe)
                 }
-            }
-            else{
+            } else {
                 Log.d(TAG, "Recipes")
                 recipe = recipeListViewModel.getRecipeById(recipeId.toLong())!!
 
@@ -72,6 +72,7 @@ class RecipeDetailFragment : Fragment() {
 
         }
     }
+
     private fun loadUi(recipe: RecipeModel?) {
         binding.recipeTitleView.text = recipe?.name
         binding.recipeDescriptionView.text = recipe?.description

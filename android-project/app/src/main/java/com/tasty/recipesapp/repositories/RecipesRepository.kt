@@ -1,8 +1,6 @@
 package com.tasty.recipesapp.repositories
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
 import com.tasty.recipesapp.data.dtos.input.RecipeDTO
 import com.tasty.recipesapp.data.models.RecipeModel
 import com.tasty.recipesapp.database.daos.RecipeDao
@@ -18,8 +16,10 @@ import org.json.JSONObject
 // Csomag importálása a com.google.gson.reflect csomagból
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.tasty.recipesapp.api.RecipeApiClient
 
-class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<RecipeDTO, RecipeModel> {
+class RecipesRepository(private val recipeDao: RecipeDao) :
+    IGenericRepository<RecipeDTO, RecipeModel> {
 
     val gson = Gson()
 
@@ -30,12 +30,12 @@ class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<R
             thumbnailUrl = this.thumbnailUrl,
             original_video_url = this.original_video_url,
             price = this.price.toModel(),
-            tags = this.tags.map{ it.toModel()},
+            tags = this.tags.map { it.toModel() },
             userRatings = this.userRatings.toModel(),
             sections = this.sections.map { it.toModel() },
             nutrition = this.nutrition.toModel(),
             topics = this.topics.toModel(),
-            instructions = this.instructions.map { it.toModel()},
+            instructions = this.instructions.map { it.toModel() },
             credits = this.credits.map { it.toModel() },
             createdAt = this.createdAt.toLong(),
             description = this.description,
@@ -89,27 +89,27 @@ class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<R
         return dataEntities.map { recipeEntityToModel(it) }
     }
 
-    suspend fun getRecipeFromDbById(id : Long): RecipeModel? {
+    suspend fun getRecipeFromDbById(id: Long): RecipeModel? {
         val dataEntity = recipeDao.getRecipeById(id)
 
-        if(dataEntity != null){
+        if (dataEntity != null) {
             return recipeEntityToModel(dataEntity)
         }
 
         return null
     }
 
-    suspend fun deleteRecipeFromDb(id : Long){
+    suspend fun deleteRecipeFromDb(id: Long) {
         return recipeDao.deleteRecipeById(id)
     }
 
-    suspend fun insertRecipe(recipeEntity: RecipeEntity){
+    suspend fun insertRecipe(recipeEntity: RecipeEntity) {
         return recipeDao.insertRecipe(recipeEntity)
     }
 
-    private fun recipeEntityToModel(dataEntity: RecipeEntity): RecipeModel{
+    private fun recipeEntityToModel(dataEntity: RecipeEntity): RecipeModel {
 
-        val recipe  = gson.fromJson(dataEntity.json, RecipeModel::class.java)
+        val recipe = gson.fromJson(dataEntity.json, RecipeModel::class.java)
 
         recipe!!.id = dataEntity.internalId.toInt()
 
@@ -117,15 +117,25 @@ class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<R
     }
 
     private val recipeApiClient = RecipeApiClient()
-
     suspend fun getRecipesFromApi(
         from: String,
         size: String,
-        tags: String? = null
+        tags: String? = null,
+        sort: String? = null,
     ): List<RecipeModel> {
-        val recipeList = recipeApiClient.getRecipes(from, size, tags)
-        Log.d(TAG, "getRecipesFromApi: $recipeList")
-        return emptyList()
+
+        return recipeApiClient.recipeService.getRecipes(
+            from,
+            size,
+            tags,
+            sort
+        ).results.toModelList()
+    }
+
+    suspend fun getRecipeByIdFromApi(
+        id: String
+    ): RecipeModel {
+        return recipeApiClient.recipeService.getRecipeDetail(id).toModel()
     }
 }
 

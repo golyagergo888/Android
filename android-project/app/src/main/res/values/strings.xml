@@ -41,4 +41,12 @@
     <string name="Delete">Delete</string>
     <string name="CreatedAt">Created at: </string>
 
+    <string-array name="sort_options">
+        <item>Price Asc</item>
+        <item>Price Desc</item>
+        <item>Rating</item>
+        <item>Total Time Asc</item>
+        <item>Total Time Desc</item>
+    </string-array>
+
 </resources>
