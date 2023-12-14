@@ -6,4 +6,8 @@ data class UserRatingsModel (
     val countPositive : Int,
     val countNegative : Int,
     val score : Double
-)
+){
+    override fun toString(): String {
+        return "Rating: ${String.format("%.2f", this.score * 10)}"
+    }
+}

@@ -1,5 +1,6 @@
 package com.tasty.recipesapp.ui.recipe
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -27,14 +28,13 @@ object RecipeListViewModel : ViewModel() {
             _recipesModels.postValue(data)
         }
     }
-    fun getRecipeById(id : Int) : RecipeModel?{
-        return _recipesModels.value?.find { it -> it.id == id }
+    fun getRecipeById(id : Long) : RecipeModel?{
+        return _recipesModels.value?.find { it -> it.id.toLong() == id }
     }
 
     fun getRecipeFromDbById(id: Long): RecipeModel? {
         var recipe : RecipeModel? = null
         viewModelScope.launch {
-
             recipe = RepositoryProvider.recipesRepository.getRecipeFromDbById(id)
         }
 

@@ -35,7 +35,7 @@ class NewRecipeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewRecipeBinding.inflate(inflater, container, false)
 
         return binding.root

@@ -22,8 +22,7 @@ import com.google.gson.reflect.TypeToken
 class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<RecipeDTO, RecipeModel> {
 
     val gson = Gson()
-    // Merfoldkore legyen insert, delete, local databasen, details, profileoldal
-    // Atkell irni suspendre ezeket
+
     override fun RecipeDTO.toModel(): RecipeModel {
         return RecipeModel(
             id = this.id,
@@ -91,7 +90,6 @@ class RecipesRepository(private val recipeDao: RecipeDao) : IGenericRepository<R
     }
 
     suspend fun getRecipeFromDbById(id : Long): RecipeModel? {
-
         val dataEntity = recipeDao.getRecipeById(id)
 
         if(dataEntity != null){

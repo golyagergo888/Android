@@ -29,7 +29,7 @@ class RecipeFragment : Fragment(), OnItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRecipesBinding.inflate(inflater, container, false)
         return binding.root
     }

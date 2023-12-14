@@ -7,4 +7,10 @@ data class NutritionModel (
     val calories : Int,
     val sugar : Int,
     val carbohydrates : Int
-)
+){
+    override fun toString(): String {
+        return "calories: ${this.calories}\nsugar: ${this.sugar}\ncarbohydrates: ${this.carbohydrates}\n" +
+                "fiber: ${this.fiber}\nprotein: ${this.protein}\nfat: ${this.fat}"
+
+    }
+}

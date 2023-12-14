@@ -61,11 +61,11 @@ class RecipesListAdapter(val onClickListener: OnItemClickListener) :
     override fun onBindViewHolder(holder: RecipeItemViewHolder, position: Int) {
         val currentRecipe = recipesList[position]
         holder.recipeTitleView.text = currentRecipe.name ?: "Default Name"
-        holder.recipeDescriptionView.text = currentRecipe.description ?: "Default Description"
+        holder.recipeDescriptionView.text = currentRecipe.description ?: ""
         // Bind other properties as needed
-        holder.recipeNutritionView.text = currentRecipe.nutrition?.toString() ?: "No Nutrition"
-        holder.recipeRatingView.text = currentRecipe.userRatings?.toString() ?: "No Rating"
-        holder.recipePriceView.text = currentRecipe.price?.toString() ?: "No Price"
+        holder.recipeNutritionView.text = currentRecipe.nutrition?.toString() ?: ""
+        holder.recipeRatingView.text = currentRecipe.userRatings?.toString() ?: ""
+        holder.recipePriceView.text = currentRecipe.price?.toString() ?: ""
 
         val thumbnailUrl = currentRecipe.thumbnailUrl
         if (thumbnailUrl.isNotEmpty()) {

@@ -1,7 +1,9 @@
 package com.tasty.recipesapp.ui.profile
 
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +32,7 @@ class ProfileFragment : Fragment(), OnItemClickListenerEntity, OnDeleteClickList
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
@@ -60,6 +62,8 @@ class ProfileFragment : Fragment(), OnItemClickListenerEntity, OnDeleteClickList
 
     override fun onItemClick(id: Long) {
         val bundle = Bundle()
+
+        Log.d(TAG, "CLICKED")
 
         bundle.putInt("recipeId",id.toInt())
         bundle.putString("recipeType", "Profile")

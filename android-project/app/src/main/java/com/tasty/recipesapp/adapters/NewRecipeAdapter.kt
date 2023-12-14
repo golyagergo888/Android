@@ -44,7 +44,7 @@ class NewRecipeAdapter(
     }
 
 
-    inner class RecipeItemViewHolder(binding: RecipeListItemBinding) :
+    inner class RecipeItemViewHolder(private val binding: RecipeListItemBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val recipeTitleView: TextView = binding.recipeTitleView
         val recipeDescriptionView: TextView = binding.recipeDescriptionView
@@ -55,8 +55,11 @@ class NewRecipeAdapter(
 
         init {
             binding.root.setOnClickListener {
+                val position: Int = adapterPosition
                 val currentPosition = this.bindingAdapterPosition
                 val currentRecipe = recipesList[currentPosition]
+
+                onClickListener.onItemClick(currentRecipe.id.toLong())
             }
         }
 

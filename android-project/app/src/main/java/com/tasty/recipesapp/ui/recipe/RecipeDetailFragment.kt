@@ -1,7 +1,10 @@
 package com.tasty.recipesapp.ui.recipe
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.net.Uri
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +39,7 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
 
@@ -53,7 +56,7 @@ class RecipeDetailFragment : Fragment() {
         if(recipeId != null){
 
             if(recipeType != null && recipeType == "Profile"){
-
+                Log.d(TAG, "Profile")
                 profileRecipeViewModel.loadRecipeFromDbById(recipeId.toLong())
 
                 profileRecipeViewModel.recipeModel.observe(viewLifecycleOwner){ recipe ->
@@ -61,7 +64,8 @@ class RecipeDetailFragment : Fragment() {
                 }
             }
             else{
-                recipe = recipeListViewModel.getRecipeFromDbById(recipeId.toLong())!!
+                Log.d(TAG, "Recipes")
+                recipe = recipeListViewModel.getRecipeById(recipeId.toLong())!!
 
                 loadUi(recipe)
             }

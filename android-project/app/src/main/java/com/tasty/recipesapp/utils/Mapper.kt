@@ -43,11 +43,11 @@ fun UnitDTO.toModel() : UnitModel {
 
 fun PriceDTO.toModel() : PriceModel {
     return PriceModel(
-        consumption_portion = this.consumption_portion,
-        total = this.total,
+        consumption_portion = this.consumption_portion.toLong(),
+        total = this.total.toLong(),
         updated_at = this.updated_at,
-        portion = this.portion,
-        consumption_total = this.consumption_total
+        portion = this.portion.toLong(),
+        consumption_total = this.consumption_total.toLong()
     )
 }
 

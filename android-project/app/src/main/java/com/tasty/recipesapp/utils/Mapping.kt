@@ -48,11 +48,11 @@ object Mapping {
     fun PriceDTO2Model(priceDTO: PriceDTO) : PriceModel {
         return PriceModel(
 
-            consumption_portion = priceDTO.consumption_portion,
-            total = priceDTO.total,
+            consumption_portion = priceDTO.consumption_portion.toLong(),
+            total = priceDTO.total.toLong(),
             updated_at = priceDTO.updated_at,
-            portion = priceDTO.portion,
-            consumption_total = priceDTO.consumption_total
+            portion = priceDTO.portion.toLong(),
+            consumption_total = priceDTO.consumption_total.toLong()
 
         )
     }

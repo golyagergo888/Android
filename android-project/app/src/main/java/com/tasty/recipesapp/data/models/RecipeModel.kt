@@ -37,9 +37,8 @@ data class RecipeModel (
     fun getRecipeIngredientsList(): String {
         val stringBuilder = StringBuilder()
 
-        for ((index, section) in sections?.withIndex()!!) {
-            stringBuilder.append("${index + 1}. ${section.getSectionIngredientsList()}\n")
-        }
+        stringBuilder.append("${sections?.get(0)?.getSectionIngredientsList()}\n")
+
 
         return stringBuilder.toString()
     }
