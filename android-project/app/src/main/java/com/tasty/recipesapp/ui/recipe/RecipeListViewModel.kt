@@ -46,22 +46,13 @@ object RecipeListViewModel : ViewModel() {
         return recipe
     }
 
-    fun getAllRecipesFromApi(selectedOption: String? = null) {
-        val sortParameter =
-            if (selectedOption == "Price Desc") "price:desc"
-            else if (selectedOption == "Price Asc") "price:asc"
-            else if (selectedOption == "Rating") "rating:desc"
-            else if (selectedOption == "Total Time Asc") "total_time_minutes:asc"
-            else if (selectedOption == "Total Time Desc") "total_time_minutes:desc"
-            else null
-
+    fun getAllRecipesFromApi() {
         viewModelScope.launch {
             var recipes: List<RecipeModel> = emptyList()
             recipes =
-                RepositoryProvider.recipesRepository.getRecipesFromApi(from = "0", size = "30", sort = sortParameter)
+                RepositoryProvider.recipesRepository.getRecipesFromApi(from = "0", size = "30")
 
             _recipesModels.postValue(recipes)
         }
     }
-
 }

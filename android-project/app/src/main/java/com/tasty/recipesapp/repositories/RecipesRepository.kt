@@ -121,14 +121,12 @@ class RecipesRepository(private val recipeDao: RecipeDao) :
         from: String,
         size: String,
         tags: String? = null,
-        sort: String? = null,
     ): List<RecipeModel> {
 
         return recipeApiClient.recipeService.getRecipes(
             from,
             size,
-            tags,
-            sort
+            tags
         ).results.toModelList()
     }
 

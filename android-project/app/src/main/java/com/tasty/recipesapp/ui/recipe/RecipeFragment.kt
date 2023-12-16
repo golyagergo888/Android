@@ -55,6 +55,7 @@ class RecipeFragment : Fragment(), OnItemClickListener {
 
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sortSpinner.adapter = sortAdapter
+        var selectedOption = ""
 
         sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -63,9 +64,8 @@ class RecipeFragment : Fragment(), OnItemClickListener {
                 position: Int,
                 id: Long
             ) {
-                val selectedOption = parentView?.getItemAtPosition(position).toString()
-                applySorting(selectedOption)
-                recipeListViewModel.getAllRecipesFromApi(selectedOption)
+                selectedOption = parentView?.getItemAtPosition(position).toString()
+                recipeListViewModel.getAllRecipesFromApi()
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -76,7 +76,6 @@ class RecipeFragment : Fragment(), OnItemClickListener {
 //        recipeListViewModel.getAllRecipesFromApi()
 
         recipeListViewModel.recipesModels.observe(viewLifecycleOwner) { recipes ->
-
             adapter.setData(recipes)
         }
 
@@ -90,10 +89,6 @@ class RecipeFragment : Fragment(), OnItemClickListener {
                 R.id.action_recipesFragment_to_recipeDetailFragment,
                 bundleOf("recipeId" to recipe.id, "recipeType" to "Recipe")
             )
-    }
-
-    private fun applySorting(selectedOption: String) {
-        Log.d(TAG, "Selected option: $selectedOption")
     }
 
     override fun onItemClick(item: RecipeModel) {
