@@ -65,11 +65,11 @@ class RecipeFragment : Fragment(), OnItemClickListener {
                 id: Long
             ) {
                 selectedOption = parentView?.getItemAtPosition(position).toString()
-                recipeListViewModel.getAllRecipesFromApi()
+                recipeListViewModel.getAllRecipesFromApi(selectedOption)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                recipeListViewModel.getAllRecipesFromApi()
+                recipeListViewModel.getAllRecipesFromApi(selectedOption)
             }
         }
 //        recipeListViewModel.loadRecipesData(requireContext())

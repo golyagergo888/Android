@@ -42,6 +42,7 @@
     <string name="CreatedAt">Created at: </string>
 
     <string-array name="sort_options">
+        <item>Sort By:</item>
         <item>Price Asc</item>
         <item>Price Desc</item>
         <item>Rating</item>

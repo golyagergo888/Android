@@ -46,11 +46,25 @@ object RecipeListViewModel : ViewModel() {
         return recipe
     }
 
-    fun getAllRecipesFromApi() {
+    fun getAllRecipesFromApi(selectedOption: String?) {
         viewModelScope.launch {
-            var recipes: List<RecipeModel> = emptyList()
-            recipes =
+            var recipes =
                 RepositoryProvider.recipesRepository.getRecipesFromApi(from = "0", size = "30")
+
+
+            if (selectedOption != "Sort By:") {
+                if (selectedOption == "Price Asc") {
+                    recipes = recipes.sortedBy { it -> it.price?.total }
+                } else if (selectedOption == "Price Desc") {
+                    recipes = recipes.sortedByDescending { it -> it.price?.total }
+                } else if (selectedOption == "Rating") {
+                    recipes = recipes.sortedByDescending { it -> it.userRatings?.score }
+                } else if (selectedOption == "Total Time Asc") {
+                    recipes = recipes.sortedBy { it -> it.cookTimeMinutes }
+                } else if (selectedOption == "Total Time Desc") {
+                    recipes = recipes.sortedByDescending { it -> it.cookTimeMinutes }
+                }
+            }
 
             _recipesModels.postValue(recipes)
         }
